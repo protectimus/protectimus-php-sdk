@@ -23,9 +23,9 @@ class TokenServiceClient extends AbstractServiceClient {
 		return $this->checkResponse($response);
 	}
 
-	public function getTokens($offset = 0) {
+	public function getTokens($offset = 0, $limit = 10) {
 		$response = $this->getClient(Http::GET)->uri($this->getServiceUri() . "tokens." . $this->_response_format
-		. (!empty($offset) ? "?start=" . $offset : ""))->send();
+		."?start=". (!empty($offset) ? $offset : "0"). "&limit=". (!empty($limit) ? $limit : "10"))->send();
 		return $this->checkResponse($response);
 	}
 

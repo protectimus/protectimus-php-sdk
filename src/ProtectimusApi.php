@@ -47,6 +47,42 @@ class ProtectimusApi {
 
 	/**
 	 *
+	 * Performs static environment check for user with id
+	 * <code>userId</code> or login <code>userLogin</code>, which is assigned to
+	 * resource with id <code>resourceId</code>.
+	 *
+	 * @param resourceId
+	 * @param userId
+	 * @param userLogin
+	 * @param $jsonEnvironment
+	 *            - user environment in JSON format (see documentation)
+	 * @return match percent for current environment in users list.
+	 * @throws ProtectimusApiException
+	 */
+	public function checkEnvironment($resourceId, $userId = null, $userLogin = null, $jsonEnvironment = null) {
+		$auth_service_client = new AuthServiceClient($this->_username, $this->_api_key, $this->_api_url, "json", $this->_version);
+		return $auth_service_client->checkEnvironment($resourceId, $userId, $userLogin, $jsonEnvironment);
+	}
+
+	/**
+	 *
+	 * Performs static environment save for user with id
+	 * <code>userId</code> or login <code>userLogin</code>
+	 *
+	 * @param userId
+	 * @param userLogin
+	 * @param $jsonEnvironment
+	 *            - user environment in JSON format (see documentation)
+	 * @return true if current environment was saved for user; false otherwise.
+	 * @throws ProtectimusApiException
+	 */
+	public function saveEnvironment($userId = null, $userLogin = null, $jsonEnvironment = null) {
+		$auth_service_client = new AuthServiceClient($this->_username, $this->_api_key, $this->_api_url, "json", $this->_version);
+		return $auth_service_client->saveEnvironment($userId, $userLogin, $jsonEnvironment);
+	}
+
+	/**
+	 *
 	 * Performs authentication for token with id <code>tokenId</code>, which is
 	 * assigned to resource with id <code>resourceId</code>.
 	 *
@@ -138,12 +174,13 @@ class ProtectimusApi {
 	 * Gets a list of resources descending (10 records starting from <code>offset</code>)
 	 *
 	 * @param offset
+	 * @param limit
 	 * @return list of resources
 	 * @throws ProtectimusApiException
 	 */
-	public function getResources($offset = 0) {
+	public function getResources($offset = 0, $limit = 10) {
 		$resource_service_client = new ResourceServiceClient($this->_username, $this->_api_key, $this->_api_url, "json", $this->_version);
-		return $resource_service_client->getResources($offset);
+		return $resource_service_client->getResources($offset, $limit);
 	}
 
 	/**
@@ -367,12 +404,13 @@ class ProtectimusApi {
 	 * Gets a list of tokens descending (10 records starting from <code>offset</code>)
 	 *
 	 * @param offset
+	 * @param limit
 	 * @return list of tokens
 	 * @throws ProtectimusApiException
 	 */
-	public function getTokens($offset = 0) {
+	public function getTokens($offset = 0, $limit = 10) {
 		$token_service_client = new TokenServiceClient($this->_username, $this->_api_key, $this->_api_url, "json", $this->_version);
-		return $token_service_client->getTokens($offset);
+		return $token_service_client->getTokens($offset, $limit);
 	}
 
 	/**
@@ -570,12 +608,13 @@ class ProtectimusApi {
 	 * Gets a list of users descending (10 records starting from <code>offset</code>)
 	 *
 	 * @param offset
+	 * @param limit
 	 * @return list of users
 	 * @throws ProtectimusApiException
 	 */
-	public function getUsers($offset = 0) {
+	public function getUsers($offset = 0, $limit = 10) {
 		$user_service_client = new UserServiceClient($this->_username, $this->_api_key, $this->_api_url, "json", $this->_version);
-		return $user_service_client->getUsers($offset);
+		return $user_service_client->getUsers($offset, $limit);
 	}
 
 	/**
@@ -679,12 +718,13 @@ class ProtectimusApi {
 	 *
 	 * @param userId
 	 * @param offset
+	 * @param limit
 	 * @return list of user tokens
 	 * @throws ProtectimusApiException
 	 */
-	public function getUserTokens($userId, $offset = 0) {
+	public function getUserTokens($userId, $offset = 0, $limit = 10) {
 		$user_service_client = new UserServiceClient($this->_username, $this->_api_key, $this->_api_url, "json", $this->_version);
-		return $user_service_client->getUserTokens($userId, $offset);
+		return $user_service_client->getUserTokens($userId, $offset, $limit);
 	}
 
 	/**
