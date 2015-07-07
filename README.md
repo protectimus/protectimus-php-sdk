@@ -1,3 +1,6 @@
+protectimus-php-sdk
+====================
+
 <div style="text-align: justify;">
 
 This is an API-client on PHP to integrate Protectimus two-factor authentication into your project easily.
