@@ -8,7 +8,7 @@ use Exception\ProtectimusApiException;
 
 define("USERNAME", "");
 define("API_KEY", "");
-define("API_URL", "");
+define("API_URL", "https://api.protectimus.com/");
 
 try {
 	$api = new ProtectimusApi(USERNAME, API_KEY, API_URL);
@@ -57,7 +57,7 @@ try {
 
 	echo "<br/>GETTING A LIST OF TOKENS<br/>";
 	// gets a list of tokens descending (10 records starting from 'offset' parameter)
-	$response = $api->getTokens(0);
+	$response = $api->getTokens(0, 10);
 	echo print_r($response, true) . "<br/>";
 	echo "TOKENS =>>> " . print_r($response->response->tokens, true) . "<br/>";
 

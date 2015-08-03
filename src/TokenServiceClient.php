@@ -23,9 +23,9 @@ class TokenServiceClient extends AbstractServiceClient {
 		return $this->checkResponse($response);
 	}
 
-	public function getTokens($offset = 0) {
+	public function getTokens($offset = 0, $limit = 10) {
 		$response = $this->getClient(Http::GET)->uri($this->getServiceUri() . "tokens." . $this->_response_format
-		. (!empty($offset) ? "?start=" . $offset : ""))->send();
+		."?start=". (!empty($offset) ? $offset : "0"). "&limit=". (!empty($limit) ? $limit : "10"))->send();
 		return $this->checkResponse($response);
 	}
 
@@ -90,6 +90,22 @@ class TokenServiceClient extends AbstractServiceClient {
 	public function unassignToken($tokenId) {
 		$response = $this->getClient(Http::POST)
 		->uri($this->getServiceUri() . "tokens/" . $tokenId . "/unassign." . $this->_response_format)
+		->send();
+		return $this->checkResponse($response);
+	}
+
+	public function signTransaction($tokenId, $transactionData, $hash) {
+		$response = $this->getClient(Http::POST)
+		->uri($this->getServiceUri() . "tokens/sign-transaction." . $this->_response_format)
+		->body(array("tokenId" => $tokenId, "transactionData" => $transactionData, "hash" => $hash))
+		->send();
+		return $this->checkResponse($response);
+	}
+
+	public function verifySignedTransaction($tokenId, $transactionData, $hash, $otp) {
+		$response = $this->getClient(Http::POST)
+		->uri($this->getServiceUri() . "tokens/verify-signed-transaction." . $this->_response_format)
+		->body(array("tokenId" => $tokenId, "transactionData" => $transactionData, "hash" => $hash, "otp" => $otp))
 		->send();
 		return $this->checkResponse($response);
 	}

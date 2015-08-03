@@ -13,9 +13,9 @@ class UserServiceClient extends AbstractServiceClient {
 		parent::__construct($_username, $_api_key, $_api_url, $_response_format, $_version);
 	}
 
-	public function getUsers($offset = 0) {
+	public function getUsers($offset = 0, $limit = 10) {
 		$response = $this->getClient(Http::GET)->uri($this->getServiceUri() . "users." . $this->_response_format
-		. (!empty($offset) ? "?start=" . $offset : ""))->send();
+		."?start=". (!empty($offset) ? $offset : "0"). "&limit=". (!empty($limit) ? $limit : "10"))->send();
 		return $this->checkResponse($response);
 	}
 

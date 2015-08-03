@@ -26,6 +26,22 @@ class AuthServiceClient extends AbstractServiceClient {
 		return $this->checkResponse($response);
 	}
 
+	public function checkEnvironment($resourceId, $userId = null, $userLogin = null, $jsonEnvironment = null) {
+		$response = $this->getClient(Http::POST)->sends(Mime::FORM)
+		->uri($this->getServiceUri() . "authenticate/check-environment." . $this->_response_format)
+		->body(array("resourceId" => $resourceId, "userId" => $userId, "userLogin" => $userLogin, "jsonEnvironment" => $jsonEnvironment))
+		->send();
+		return $this->checkResponse($response);
+	}
+
+	public function saveEnvironment($userId = null, $userLogin = null, $jsonEnvironment = null) {
+		$response = $this->getClient(Http::POST)->sends(Mime::FORM)
+		->uri($this->getServiceUri() . "authenticate/save-environment." . $this->_response_format)
+		->body(array("userId" => $userId, "userLogin" => $userLogin, "jsonEnvironment" => $jsonEnvironment))
+		->send();
+		return $this->checkResponse($response);
+	}
+
 	public function authenticateToken($resourceId, $tokenId, $otp, $ip = null) {
 		$response = $this->getClient(Http::POST)->sends(Mime::FORM)
 		->uri($this->getServiceUri() . "authenticate/token." . $this->_response_format)

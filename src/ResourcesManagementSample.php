@@ -8,7 +8,7 @@ use Exception\ProtectimusApiException;
 
 define("USERNAME", "");
 define("API_KEY", "");
-define("API_URL", "");
+define("API_URL", "https://api.protectimus.com/");
 
 try {
 	$api = new ProtectimusApi(USERNAME, API_KEY, API_URL);
@@ -31,7 +31,7 @@ try {
 
 	echo "<br/>GETTING A LIST OF RESOURCES<br/>";
 	// gets a list of resources descending (10 records starting from 'offset' parameter)
-	$response = $api->getResources(0);
+	$response = $api->getResources(0, 10);
 	echo print_r($response, true) . "<br/>";
 	echo "RESOURCES =>>> " . print_r($response->response->resources, true) . "<br/>";
 

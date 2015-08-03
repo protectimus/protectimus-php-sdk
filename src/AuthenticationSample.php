@@ -8,7 +8,7 @@ use Exception\ProtectimusApiException;
 
 define("USERNAME", "");
 define("API_KEY", "");
-define("API_URL", "");
+define("API_URL", "https://api.protectimus.com/");
 
 try {
 	$api = new ProtectimusApi(USERNAME, API_KEY, API_URL);
