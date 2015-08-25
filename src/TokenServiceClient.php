@@ -95,7 +95,8 @@ class TokenServiceClient extends AbstractServiceClient {
 	}
 
 	public function signTransaction($tokenId, $transactionData, $hash) {
-		$response = $this->getClient(Http::POST)
+		$response = $this->getClient(Http::POST)->sends(Mime::FORM)
+
 		->uri($this->getServiceUri() . "tokens/sign-transaction." . $this->_response_format)
 		->body(array("tokenId" => $tokenId, "transactionData" => $transactionData, "hash" => $hash))
 		->send();
@@ -103,7 +104,8 @@ class TokenServiceClient extends AbstractServiceClient {
 	}
 
 	public function verifySignedTransaction($tokenId, $transactionData, $hash, $otp) {
-		$response = $this->getClient(Http::POST)
+		$response = $this->getClient(Http::POST)->sends(Mime::FORM)
+
 		->uri($this->getServiceUri() . "tokens/verify-signed-transaction." . $this->_response_format)
 		->body(array("tokenId" => $tokenId, "transactionData" => $transactionData, "hash" => $hash, "otp" => $otp))
 		->send();
