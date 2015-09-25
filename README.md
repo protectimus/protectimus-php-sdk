@@ -16,7 +16,7 @@ To integrate Protectimus into your project, you can use one of these two methods
  
 Independently of the way you have chosen, please, start integration from reading this page: https://www.protectimus.com/for-developers. It contains a lot of important information about how the system works and what you have to do to integrate OTP into your system.
  
-Our <a href="https://www.protectimus.com/materials">materials</a> page can be interesting for you as well. Among other things, our <a href="https://www.protectimus.com/images/pdf/Protectimus_API_manual_en.pdf">API documentation</a> can be found there. It can help you to understand better what exactly each method does and how to operate with all that stuff.
+Our <a href="https://www.protectimus.com/materials">materials</a> page can be interesting for you as well. Among other things, our <a href="https://www.protectimus.com/images/pdf/Protectimus_API_Manual_en.pdf">API documentation</a> can be found there. It can help you to understand better what exactly each method does and how to operate with all that stuff.
  
 If you will have any questions - feel free to contact us: support@protectimus.com
 Also, you can learn more about Protectimus at our web-site: https://www.protectimus.com
